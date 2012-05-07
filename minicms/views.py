@@ -12,8 +12,15 @@ def show_page(request, name):
 
     page = get_object_or_404(_get_page(name, lang))
 
-    return render_to_response('minicms/default.html', {'page': page},
-                               RequestContext(request))
+    unique_pages = Page.objects.values_list('name').distinct()
+
+    # in menu, we probably don't need `content`, so defer it
+    # also, note the comma - `unique_pages` is a list of tuples
+    menu = [_get_page(n, lang).defer('content')[0] for n, in unique_pages]
+
+    return render_to_response('minicms/default.html',
+                              {'page': page, 'menu': menu},
+                              RequestContext(request))
 
 
 def _get_page(name, lang):
