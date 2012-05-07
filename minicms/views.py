@@ -1,7 +1,8 @@
 # encoding: utf-8
 
 from django.conf import settings
-from django.shortcuts import render_to_response, get_object_or_404
+from django.http import Http404
+from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from minicms.models import Page
@@ -10,13 +11,14 @@ from minicms.models import Page
 def show_page(request, name):
     lang = request.LANGUAGE_CODE
 
-    page = get_object_or_404(_get_page(name, lang))
+    page = _get_page(name, lang)
+    if not page:
+        raise Http404
 
     unique_pages = Page.objects.values_list('name').distinct()
 
-    # in menu, we probably don't need `content`, so defer it
-    # also, note the comma - `unique_pages` is a list of tuples
-    menu = [_get_page(n, lang).defer('content')[0] for n, in unique_pages]
+    # note the comma - `unique_pages` is a list of tuples
+    menu = [_get_page(n, lang) for n, in unique_pages]
 
     return render_to_response('minicms/default.html',
                               {'page': page, 'menu': menu},
@@ -29,16 +31,21 @@ def _get_page(name, lang):
     evaluated QuerySet of Pages (which can contain zero or one objects)
     """
     default_lang = settings.LANGUAGE_CODE
-    langlist = [lang]
+    # in most cases (menu constructing) we don't need `content`, so defer it
+    pages = Page.objects.filter(name=name).defer('content')
 
-    if default_lang != lang:
-        langlist.append(default_lang)
+    pages_by_lang = {}
+    for page in pages:
+        pages_by_lang[page.lang] = page
 
-    pages = Page.objects.filter(name=name)
+    page = pages_by_lang.get(lang)
+    if not page and lang != default_lang:
+        page = pages_by_lang.get(default_lang)
 
-    for l in langlist:
-        page = pages.filter(lang=l)
-        if page.exists():
-            return page
+    if not page:
+        try:
+            page = pages[0]
+        except IndexError:
+            return None
 
-    return pages[:1]
+    return page
