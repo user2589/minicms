@@ -27,8 +27,8 @@ def show_page(request, name):
 
 def _get_page(name, lang):
     """
-    Returns more prefered (current language, default or any available) not
-    evaluated QuerySet of Pages (which can contain zero or one objects)
+    Returns more prefered (current language, default or any available) QuerySet
+    of Pages (which can contain zero or one objects)
     """
     default_lang = settings.LANGUAGE_CODE
     # in most cases (menu constructing) we don't need `content`, so defer it
