@@ -63,20 +63,20 @@ his language. Similar to how Django translation works.
 
 Each Page object have following attributes:
 
-- ``name`` - identifier of page, must be unique withing language
+- ``name`` - identifier of a Page, must be unique withing language
 
 - ``lang`` - in what language Page is written
 
-- ``title`` - title of a page
+- ``title`` - title of a Page
 
-- ``content`` - content of a page in markdown format
+- ``content`` - content of a Page in markdown format
 
 
 ``name`` and ``lang`` attributes must be unique together.
 
-**minicms** use template 'minicms/default.html' template, and pass to it two
-context variables: ``page`` that represents current Page object and ``menu``
-that a list of all available unique pages.
+**minicms** use 'minicms/default.html' template, and pass to it two context
+variables: ``page`` that represents current Page object and ``menu`` that a list
+of all available unique pages.
 
 Since **minicms** use markdown as markup language, within template you should
 load ``markup`` template library: ::
