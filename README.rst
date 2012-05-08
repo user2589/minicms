@@ -48,6 +48,9 @@ Setup
 
 - Create template 'minicms/default.html' somewhere Django can find it
 
+- Sync your database using ``manage.py syncdb``
+
+
 Use minicms
 ===========
 
