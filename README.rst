@@ -1,7 +1,7 @@
-minicms
+Minicms
 #######
 
-**minicms** is simple CMS app for Django which supports i18n in some extent and
+**Minicms** is simple CMS app for Django which supports i18n in some extent and
 markdown WYSIWYG editor inside admin.
 
 
@@ -16,7 +16,7 @@ Requirements
 Installation
 ============
 
-**minicms** should be installed using pip: ::
+**Minicms** should be installed using pip: ::
 
     pip install minicms
 
@@ -77,9 +77,10 @@ Each Page object have following attributes:
 
 ``name`` and ``lang`` attributes must be unique together.
 
-**minicms** use 'minicms/default.html' template, and pass to it two context
+**Minicms** use 'minicms/default.html' template, and pass to it two context
 variables: ``page`` that represents current Page object and ``menu`` that a list
-of all available unique pages.
+of all available unique pages. So just create this template and work with this
+variables within it.
 
 Since **minicms** use markdown as markup language, within template you should
 load ``markup`` template library: ::
