@@ -15,10 +15,9 @@ def show_page(request, name):
     if not page:
         raise Http404
 
-    unique_pages = Page.objects.values_list('name').distinct()
+    unique_pages = Page.objects.values_list('name', flat=True).distinct()
 
-    # note the comma - `unique_pages` is a list of tuples
-    menu = [_get_page(n, lang) for n, in unique_pages]
+    menu = [_get_page(n, lang) for n in unique_pages]
 
     return render_to_response('minicms/default.html',
                               {'page': page, 'menu': menu},
