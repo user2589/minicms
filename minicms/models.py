@@ -14,6 +14,10 @@ class Page(models.Model):
     title = models.CharField(_('title'), max_length=100)
     content = models.TextField(_('content'))
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('minicms.views.show_page', [self.name])
+
     def __unicode__(self):
         return u'%s (%s)' % (self.name, self.lang)
 
