@@ -12,7 +12,7 @@ def read(fname):
 
 setup(
     name='minicms',
-    version='0.1.0',
+    version='0.1.1',
     author='Pavel Puchkin',
     author_email='neoascetic@gmail.com',
     url='https://github.com/neoascetic/minicms',
