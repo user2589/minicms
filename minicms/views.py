@@ -1,19 +1,29 @@
 # encoding: utf-8
 
 from django.conf import settings
-from django.http import Http404
+from django import http
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from minicms.models import Page
 
+import markdown
+
+def preview(request):
+    return http.HttpResponse(
+        markdown.markdown(
+                request.REQUEST.get('data', 'No content posted'),
+                safe_mode=True
+            ),
+        'text/html'
+    )
 
 def show_page(request, name):
     lang = request.LANGUAGE_CODE
 
     page = _get_page(name, lang)
     if not page:
-        raise Http404
+        raise http.Http404
 
     unique_pages = Page.objects.values_list('name', flat=True).distinct()
 

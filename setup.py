@@ -31,5 +31,8 @@ setup(
         "Topic :: Internet :: WWW/HTTP :: Site Management",
     ),
 
-    install_requires=('django_markdown',),
+    install_requires=(
+        'django_markdown',
+        'markdown >= 2.1'
+    ),
 )

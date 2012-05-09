@@ -30,25 +30,15 @@ Setup
     INSTALLED_APPS += (
         'minicms',
         'django_markdown',
-        'django.contrib.markup',
     )
-
-- Add 'dango_markdown' urls to base urls ::
-
-    url('^markdown/', include('django_markdown.urls'))
 
 - Add 'minicms' urlpattern to base urls and specify view function ::
 
-    ('^cms/(.+)/', 'minicms.views.show_page', name='minicms')
-
-  Of course, you may don't use any prefix at all. Just put below code at the end
-  of urlpatterns: ::
-
-    ('^(.+)/', 'minicms.views.show_page', name='minicms')
+    ('^cms/', include('minicms.views'))
 
 - Create template 'minicms/default.html' somewhere Django can find it
 
-- Sync your database using ``manage.py syncdb``
+- Sync DB ``manage.py syncdb``
 
 
 Use minicms
