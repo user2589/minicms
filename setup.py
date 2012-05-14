@@ -1,8 +1,6 @@
 # encoding: utf-8
-
 import os
 from setuptools import setup
-
 
 def read(fname):
     try:
@@ -33,6 +31,6 @@ setup(
 
     install_requires=(
         'django_markdown',
-        'markdown >= 2.1'
+        'markdown >= 2.1',
     ),
 )

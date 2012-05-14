@@ -1,0 +1,6 @@
+<ul>{% for page in menu %}<li>
+    <a href="{% url minicms.views.show_page page.slug %}"{% if page.active %} class='active_page'{% endif %}>{{ page.name }}</a>
+    {% if forloop.first %}<ul>{% endif %}
+    {% for subpage in page.children %}<li><a href="{% url minicms.views.show_page current_page.slug %}">{{ subpage.name }}</a></li>{% endfor %}
+    {% if forloop.first %}</ul>{% endif %}
+</li>{% endfor %}</ul>
