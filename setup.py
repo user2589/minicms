@@ -1,12 +1,5 @@
 # encoding: utf-8
-import os
 from setuptools import setup, find_packages
-
-def read(fname):
-    try:
-        return open(os.path.join(os.path.dirname(__file__), fname)).read()
-    except IOError:
-        return ''
 
 setup(
     name='minicms',
@@ -16,7 +9,7 @@ setup(
     url='https://github.com/neoascetic/minicms',
 
     description='Simple CMS app for Django which supports i18n',
-    long_description=read('README.rst'),
+    long_description=open('README.rst').read(),
     packages=find_packages(),
     include_package_data=True,
     classifiers=(
