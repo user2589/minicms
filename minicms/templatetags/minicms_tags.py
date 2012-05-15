@@ -13,9 +13,8 @@ def minicms_breadcrumbs(context):
     pages = []
     slug = context['page'].parent_slug
     while slug:
-        try:
-            page = utils.get_page(lang, slug)
-        except http.Http404:  # skip breadcrumbs if missing one of parents
+        page = utils.get_page(lang, slug)
+        if not page:  # skip breadcrumbs if missing one of parents
             pages = []
             break
         pages.insert(0, page)

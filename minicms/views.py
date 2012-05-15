@@ -15,6 +15,10 @@ def preview(request):
 
 
 def show_page(request, slug):
-    return render_to_response('minicms/default.html',
-                              {'page': utils.get_page(request.LANGUAGE_CODE, slug)},
-                              RequestContext(request))
+    page = utils.get_page(request.LANGUAGE_CODE, slug, full=True)
+    if not page:
+        raise http.Http404
+
+    return render_to_response(
+        'minicms/default.html', {'page': page},
+        RequestContext(request))
