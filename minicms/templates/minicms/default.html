@@ -1,15 +1,24 @@
-{% load minicms_tags %}<!DOCTYPE html>
+{% load minicms_tags %}
+<!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{{ page.title }}</title>
+    <head>
+        <meta charset="utf-8" />
+        <title>{{ page.title }}</title>
+    </head>
 
-{% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}" />{% endif %}
-{% if page.description %}<meta name="description" content="{{ page.description }}" />{% endif %}
+    <body>
 
-<h3>Breadcrumbs</h3>
-<p>{% minicms_breadcrumbs %}</p>
+        {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}" />{% endif %}
+        {% if page.description %}<meta name="description" content="{{ page.description }}" />{% endif %}
 
-<h3>Menu</h3>
-<p>{% minicms_menu %}</p>
+        <h1>Breadcrumbs</h1>
+        <p>{% minicms_breadcrumbs %}</p>
 
-{{ page.content }}
+        <h1>Menu</h1>
+        <p>{% minicms_menu %}</p>
+
+        <h1>Content</h1>
+        {{ page.content }}
+
+    </body>
+</html>
