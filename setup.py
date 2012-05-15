@@ -1,9 +1,11 @@
 # encoding: utf-8
 from setuptools import setup, find_packages
 
+from minicms import __version__ as version
+
 setup(
     name='minicms',
-    version='0.1.1',
+    version=version,
     author='Pavel Puchkin',
     author_email='neoascetic@gmail.com',
     url='https://github.com/neoascetic/minicms',
