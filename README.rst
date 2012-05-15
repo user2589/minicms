@@ -96,6 +96,8 @@ Contributors
 
 * neoascetic_ (Pavel Puchkin)
 
+* user2589_
+
 
 License
 =======
@@ -111,3 +113,4 @@ Copyright (c) 2012 Pavel Puchkin (neoascetic@gmail.com)
 .. _GNU lesser general public license: http://www.gnu.org/copyleft/lesser.html
 .. _django_markdown: https://github.com/klen/django_markdown
 .. _neoascetic: https://github.com/neoascetic
+.. _user2589: https://github.com/user2589
