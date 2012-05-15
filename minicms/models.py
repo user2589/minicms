@@ -12,14 +12,23 @@ class Page(models.Model):
         _('language'),
         max_length=10,
         choices=settings.LANGUAGES,
-        default=settings.LANGUAGE_CODE
-    )
-    slug = models.CharField(_('slug'), db_index=True, max_length=50)
-    name = models.CharField(_('page name'), max_length=100)
+        default=settings.LANGUAGE_CODE)
+
+    slug = models.CharField(
+        _('slug'), db_index=True, max_length=50,
+        help_text=_('First and last slashes will be stripped!'))
+
+    name = models.CharField(
+        _('page name'), max_length=100,
+        help_text=_('Used for grouping articles with same content but in different languages'),
+        )
+
     title = models.CharField(_('page title'), max_length=100)
 
-    keywords = models.CharField(_('page keywords'), max_length=255, blank=True, default="")
-    description = models.CharField(_('page description'), max_length=255, blank=True, default="")
+    keywords = models.CharField(
+        _('page keywords'), max_length=255, blank=True, default="")
+    description = models.CharField(
+        _('page description'), max_length=255, blank=True, default="")
 
     markdown = models.TextField(_('markdown content'))
 
