@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.conf import settings
-from django import template, http
-
+from django import template
 from minicms import utils, models
 
 register = template.Library()
@@ -11,14 +9,17 @@ register = template.Library()
 def minicms_breadcrumbs(context):
     lang = context['LANGUAGE_CODE']
     pages = []
+
     slug = context['page'].parent_slug
     while slug:
         page = utils.get_page(lang, slug)
         if not page:  # skip breadcrumbs if missing one of parents
             pages = []
             break
-        pages.insert(0, page)
+        pages.append(page)
         slug = page.parent_slug
+
+    pages.reverse()
 
     return {'breadcrumbs': pages, 'current_page': context['page']}
 
@@ -28,11 +29,11 @@ def minicms_menu(context):
     lang = context['LANGUAGE_CODE']
     current_page = context['page']
 
-    pages = models.Page.objects.filter(lang=lang).defer('markdown')
+    pages = models.Page.objects.filter(lang=lang).defer(
+        'markdown', 'description', 'keywords')
 
     def get_children(parent_slug):
-        children = filter(lambda x: x.parent_slug == parent_slug, pages)
-        print parent_slug, children
+        children = filter(lambda p: p.parent_slug == parent_slug, pages)
         for p in children:
             p.active = (p.slug == current_page.slug)
             p.children = get_children(p.slug)
