@@ -25,7 +25,7 @@ class Page(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('minicms.views.show_page', [self.name])
+        return ('minicms', [self.name])
 
     @property
     def content(self):
