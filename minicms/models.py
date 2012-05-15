@@ -6,6 +6,7 @@ from django.utils import safestring
 
 import markdown
 
+
 class Page(models.Model):
     lang = models.CharField(
         _('language'),
@@ -31,12 +32,13 @@ class Page(models.Model):
         return safestring.mark_safe(markdown.markdown(self.markdown))
 
     _parent_slug = None
+
     @property
     def parent_slug(self):
         if self._parent_slug:
             return self._parent_slug
         chunks = self.slug.rsplit('/', 1)
-        self._parent_slug = len(chunks)>1 and chunks[0] or None
+        self._parent_slug = len(chunks) > 1 and chunks[0] or None
         return self._parent_slug
 
     def __unicode__(self):

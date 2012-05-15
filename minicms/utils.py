@@ -3,6 +3,7 @@ from django.conf import settings
 from django import http
 import models
 
+
 def get_page(lang, slug):
     slug = slug.strip('/')
     try:

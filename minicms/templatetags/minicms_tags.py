@@ -6,6 +6,7 @@ from minicms import utils, models
 
 register = template.Library()
 
+
 @register.inclusion_tag('minicms/tags/breadcrumbs.html', takes_context=True)
 def minicms_breadcrumbs(context):
     lang = context['LANGUAGE_CODE']
@@ -14,13 +15,14 @@ def minicms_breadcrumbs(context):
     while slug:
         try:
             page = utils.get_page(lang, slug)
-        except http.Http404: #skip breadcrumbs if missing one of parents
+        except http.Http404:  # skip breadcrumbs if missing one of parents
             pages = []
             break
         pages.insert(0, page)
         slug = page.parent_slug
 
     return {'breadcrumbs': pages, 'current_page': context['page']}
+
 
 @register.inclusion_tag('minicms/tags/menu.html', takes_context=True)
 def minicms_menu(context):
@@ -30,7 +32,7 @@ def minicms_menu(context):
     pages = models.Page.objects.filter(lang=lang).defer('markdown')
 
     def get_children(parent_slug):
-        children = filter(lambda x: x.parent_slug == parent_slug , pages)
+        children = filter(lambda x: x.parent_slug == parent_slug, pages)
         print parent_slug, children
         for p in children:
             p.active = (p.slug == current_page.slug)
@@ -38,4 +40,3 @@ def minicms_menu(context):
         return children
 
     return {'menu': get_children(None), 'current_page': context['page']}
-

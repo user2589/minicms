@@ -4,6 +4,7 @@ from django.contrib import admin
 from minicms import models
 from django_markdown.admin import MarkdownModelAdmin
 
+
 class PageAdmin(MarkdownModelAdmin):
     list_display = ('lang', 'slug', 'name', 'title')
     list_display_links = ('slug',)
