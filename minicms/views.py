@@ -1,12 +1,10 @@
 # encoding: utf-8
-from django.conf import settings
+import markdown
 from django import http
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from minicms import models, utils
-
-import markdown
+from minicms import utils
 
 
 def preview(request):
@@ -17,7 +15,6 @@ def preview(request):
 
 
 def show_page(request, slug):
-
     return render_to_response('minicms/default.html',
                               {'page': utils.get_page(request.LANGUAGE_CODE, slug)},
                               RequestContext(request))
