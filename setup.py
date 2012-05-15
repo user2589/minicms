@@ -1,6 +1,6 @@
 # encoding: utf-8
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
 
 def read(fname):
     try:
@@ -17,7 +17,8 @@ setup(
 
     description='Simple CMS app for Django which supports i18n',
     long_description=read('README.rst'),
-    packages=('minicms',),
+    packages=find_packages(),
+    include_package_data=True,
     classifiers=(
         "Programming Language :: Python",
         "License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)",
