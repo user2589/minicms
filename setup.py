@@ -1,14 +1,5 @@
 # encoding: utf-8
-
-import os
-from setuptools import setup
-
-
-def read(fname):
-    try:
-        return open(os.path.join(os.path.dirname(__file__), fname)).read()
-    except IOError:
-        return ''
+from setuptools import setup, find_packages
 
 setup(
     name='minicms',
@@ -18,8 +9,9 @@ setup(
     url='https://github.com/neoascetic/minicms',
 
     description='Simple CMS app for Django which supports i18n',
-    long_description=read('README.rst'),
-    packages=('minicms',),
+    long_description=open('README.rst').read(),
+    packages=find_packages(),
+    include_package_data=True,
     classifiers=(
         "Programming Language :: Python",
         "License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)",
@@ -33,6 +25,6 @@ setup(
 
     install_requires=(
         'django_markdown',
-        'markdown >= 2.1'
+        'markdown >= 2.1',
     ),
 )

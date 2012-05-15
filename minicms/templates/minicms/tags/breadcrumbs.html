@@ -1,0 +1,2 @@
+{% for page in breadcrumbs %}<a href="{% url minicms page.slug %}">{{ page.title }}</a>&nbsp;&gt;&nbsp;{% endfor %}
+{{ current_page.title }}
