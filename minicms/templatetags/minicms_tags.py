@@ -29,8 +29,7 @@ def minicms_menu(context):
     lang = context['LANGUAGE_CODE']
     current_page = context['page']
 
-    pages = models.Page.objects.filter(lang=lang).defer(
-        'markdown', 'description', 'keywords')
+    pages = models.Page.objects.filter(lang=lang).only('name', 'slug')
 
     def get_children(parent_slug):
         children = filter(lambda p: p.parent_slug == parent_slug, pages)

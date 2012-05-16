@@ -16,21 +16,26 @@ class Page(models.Model):
 
     slug = models.CharField(
         _('slug'), db_index=True, max_length=50,
-        help_text=_('First and last slashes will be stripped!'))
+        help_text=_('Page URL. First and last slashes will be stripped!'))
 
-    name = models.CharField(
-        _('page name'), max_length=100,
-        help_text=_('Used for grouping articles with same content but in different languages'),
-        )
+    name = models.CharField(_('name'), max_length=50)
 
-    title = models.CharField(_('page title'), max_length=100)
+    title = models.CharField(
+        _('title'), max_length=100, blank=True, default="",
+        help_text=_('More detailed than name, for using in `title` tag'))
 
     keywords = models.CharField(
-        _('page keywords'), max_length=255, blank=True, default="")
+        _('keywords'), max_length=255, blank=True, default="",
+        help_text=_('For using in `meta` tag'))
+
     description = models.CharField(
-        _('page description'), max_length=255, blank=True, default="")
+        _('description'), max_length=255, blank=True, default="",
+        help_text=_('For using in `meta` tag'))
 
     markdown = models.TextField(_('markdown content'))
+
+    def __unicode__(self):
+        return u'%s (%s) at %s' % (self.name, self.lang, self.slug)
 
     @models.permalink
     def get_absolute_url(self):
@@ -50,13 +55,10 @@ class Page(models.Model):
         self._parent_slug = len(chunks) > 1 and chunks[0] or None
         return self._parent_slug
 
-    def __unicode__(self):
-        return u'%s (%s) at %s' % (self.name, self.lang, self.slug)
-
-    class Meta:
-        unique_together = (('name', 'lang'),)
-
     def save(self, *args, **kwargs):
         if self.slug:
             self.slug = self.slug.strip('/')
         return super(Page, self).save(*args, **kwargs)
+
+    class Meta:
+        unique_together = ('slug', 'lang'),

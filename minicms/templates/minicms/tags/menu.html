@@ -1,11 +1,11 @@
 <ul>
 {% for page in menu %}
     <li>
-        <a href="{% url minicms page.slug %}" {% if page.active %}class="active-page"{% endif %}>{{ page.title }}</a>
+        <a href="{% url minicms page.slug %}" {% if page.active %}class="active-page"{% endif %}>{{ page.name }}</a>
         {% if page.children %}
             <ul>
                 {% for subpage in page.children %}
-                <li><a href="{% url minicms subpage.slug %}">{{ subpage.title }}</a></li>
+                <li><a href="{% url minicms subpage.slug %}">{{ subpage.name }}</a></li>
                 {% endfor %}
             </ul>
         {% endif %}
