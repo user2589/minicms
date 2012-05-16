@@ -37,6 +37,9 @@ class Page(models.Model):
     def __unicode__(self):
         return u'%s (%s) at %s' % (self.name, self.lang, self.slug)
 
+    def get_title(self):
+        return self.title or self.name
+
     @models.permalink
     def get_absolute_url(self):
         return ('minicms', [self.name])
