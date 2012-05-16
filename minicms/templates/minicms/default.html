@@ -3,13 +3,14 @@
 <html lang="{{ LANGUAGE_CODE }}">
     <head>
         <meta charset="utf-8" />
+
+        {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}" />{% endif %}
+        {% if page.description %}<meta name="description" content="{{ page.description }}" />{% endif %}
+
         <title>{{ page.get_title }}</title>
     </head>
 
     <body>
-
-        {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}" />{% endif %}
-        {% if page.description %}<meta name="description" content="{{ page.description }}" />{% endif %}
 
         <h1>Breadcrumbs</h1>
         <p>{% minicms_breadcrumbs %}</p>
