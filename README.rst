@@ -7,8 +7,7 @@ markdown WYSIWYG editor inside admin.
 Requirements
 ============
 
-- django >= 1.2
-- django_markdown_
+- django >= 1.3
 - markdown
 
 Installation
@@ -21,19 +20,16 @@ Installation
 Setup
 =====
 
-- 'minicms', 'django_markdown' and 'django.contrib.markup' should be in your
-  INSTALLED_APPS ::
+- 'Minicms' should be in your INSTALLED_APPS ::
 
-    INSTALLED_APPS += (
-        'minicms',
-        'django_markdown',
-    )
+    INSTALLED_APPS += ('minicms',)
 
 - Add 'minicms' urlpattern to base urls and specify view function ::
 
     ('^cms/', include('minicms.urls'))
 
-- Create template 'minicms/default.html' somewhere Django can find it
+- Make sure you have 'django.middleware.locale.LocaleMiddleware' in your
+  MIDDLEWARE_CLASSES
 
 - Sync DB ``manage.py syncdb``
 
@@ -100,8 +96,10 @@ Copyright
 
 Copyright (c) 2012 Pavel Puchkin (neoascetic@gmail.com)
 
+Markitup_: (c) 2008 Jay Salvat (http://markitup.jaysalvat.com/)
+
+.. _Markitup:     http://markitup.jaysalvat.com/
 .. _GNU lesser general public license: http://www.gnu.org/copyleft/lesser.html
-.. _django_markdown: https://github.com/klen/django_markdown
 .. _templates: https://github.com/neoascetic/minicms/tree/master/minicms/templates
 .. _neoascetic: https://github.com/neoascetic
 .. _user2589: https://github.com/user2589
