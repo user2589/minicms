@@ -15,7 +15,8 @@ def preview(request):
 
 
 def show_page(request, slug):
-    page = utils.get_page(request.LANGUAGE_CODE, slug, full=True)
+    lang = getattr(request, 'LANGUAGE_CODE', settings.LANGUAGE_CODE)
+    page = utils.get_page(lang, slug, full=True)
     if not page:
         raise http.Http404
 
