@@ -28,68 +28,52 @@ Setup
 
     ('^cms/', include('minicms.urls'))
 
-- Make sure you have 'django.middleware.locale.LocaleMiddleware' in your
-  MIDDLEWARE_CLASSES
-
 - Sync DB ``manage.py syncdb``
 
 Use minicms
 ===========
 
-The main idea of **minicms** is that you want to have same content for each
-language. I. e. page in one language must be (or desirable to be) available in
-other language. If it isn't available, pages in default language will be showed
-to user. If it isn't available even for default language, **minicms** raise
-``404 (Not Found)``.
+Same page in different languages accessed via the same URL. If page doesn't
+exist in requested locale default language is used.
 
-Each Page model have following attributes:
+**Minicms** uses 'minicms/default.html' template, passing current page in ``page``
+context variable.
 
-- ``lang`` - in what language Page is written
+Page attributes you can use in template:
 
-- ``slug`` - in fact, not slug, but Page URL. Using this, you can construct
-  hierarchies of pages. For example, page with ``slug == 'pony_farm'`` is a
-  child of page with ``slug == 'my/pony_farm'`` and so on
+- ``lang`` - page language. Usually same as LANGUAGE_CODE context variable (see above)
 
-- ``name`` - page name
+- ``slug`` - page slug. All translations of the same page should have the same slug.
+  You can organize pages into some kind of hierarchy with slashes, eg:
+    installation
+        installation/requirements
+        installation/steps
+            installation/steps/1
+            installation/steps/2
+            installation/steps/3
+    pricing
+        pricing/free-plan
 
-- ``title`` - title of a Page, more detailed than name. Mainly for using in
-  ``title`` tag
+- ``name`` - localized page name. It will appear as a text under link in menu and
+  breadcrumbs
 
-- ``keywords`` - keywords associated with page, mainly for using in meta tag
+- ``title`` - title of a Page, intended for use in HTML title
 
-- ``description`` - short description of page, mainly for using in meta tag
+- ``keywords`` - page keywords intended for use in HTML meta keywords (for SEO)
 
-- ``markdown`` - raw page content in markdown format (there also ``content``
-  property, which returns the content in html)
+- ``description`` - same ask keywords but description
 
-``slug`` and ``lang`` attributes must be unique together, i. e. for each
-language we have only Page with some slug
+- ``content`` - HTML content of the page
 
-**Minicms** use 'minicms/default.html' template, and pass to it current Page
-object by ``page`` context variable.
-
-There also ``minicms_breadcrumbs`` and ``minicms_menu`` template tags available
-in ``minicms_tags`` tag library. See example templates_ for details.
-
-Contributing and bug tracking
-=============================
-
-Development of **minicms** happens at github:
-https://github.com/neoascetic/minicms
-
-Also, here you can leave your suggestions or bug reports.
-
-Contributors
-============
-
-* neoascetic_ (Pavel Puchkin)
-
-* user2589_
+There are also ``minicms_breadcrumbs`` and ``minicms_menu`` template tags available
+in ``minicms_tags`` tag library. You can override their appearance in templates
+``minicms/tags/menu`` and  ``minicms/tags/breadcrumbs``. See example templates_ for
+details.
 
 License
 =======
 
-Licensed under a `GNU lesser general public license`_.
+Distrubuted under `GNU lesser general public license`_.
 
 Copyright
 =========
