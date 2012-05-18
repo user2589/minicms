@@ -26,7 +26,6 @@ setup(
     ),
 
     install_requires=(
-        'django_markdown',
         'markdown >= 2.1',
     ),
 )
