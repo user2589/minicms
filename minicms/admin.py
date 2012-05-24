@@ -5,8 +5,9 @@ from django.db import models
 from minicms.models import Page
 from minicms.widgets import MarkdownWidget
 
+from sortable.admin import SortableAdmin
 
-class PageAdmin(admin.ModelAdmin):
+class PageAdmin(SortableAdmin):
     list_display = ('lang', 'slug', 'name', 'title')
     list_display_links = ('slug',)
     list_filter = ('lang',)

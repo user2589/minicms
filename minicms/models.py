@@ -4,10 +4,11 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils import safestring
 
+from sortable.models import Sortable
 import markdown
 
 
-class Page(models.Model):
+class Page(Sortable):
     lang = models.CharField(
         _('language'),
         max_length=10,
@@ -20,7 +21,7 @@ class Page(models.Model):
 
     name = models.CharField(_('name'), max_length=50)
 
-    title = models.CharField(
+    _title = models.CharField(
         _('title'), max_length=100, blank=True, default="",
         help_text=_('More detailed than name, for using in `title` tag'))
 
@@ -37,8 +38,9 @@ class Page(models.Model):
     def __unicode__(self):
         return u'%s (%s) at %s' % (self.name, self.lang, self.slug)
 
-    def get_title(self):
-        return self.title or self.name
+    @property
+    def title(self):
+        return self._title or self.name
 
     @models.permalink
     def get_absolute_url(self):
@@ -63,5 +65,6 @@ class Page(models.Model):
             self.slug = self.slug.strip('/')
         return super(Page, self).save(*args, **kwargs)
 
-    class Meta:
+    class Meta(Sortable.Meta):
         unique_together = ('slug', 'lang'),
+
