@@ -9,6 +9,7 @@ Requirements
 
 - django >= 1.3
 - markdown
+- sortable
 
 Installation
 ============
@@ -20,9 +21,9 @@ Installation
 Setup
 =====
 
-- 'Minicms' should be in your INSTALLED_APPS ::
+- 'minicms' and 'sortable' should be in your INSTALLED_APPS ::
 
-    INSTALLED_APPS += ('minicms',)
+    INSTALLED_APPS += ('minicms', 'sortable',)
 
 - Add 'minicms' urlpattern to base urls and specify view function ::
 
@@ -36,15 +37,17 @@ Use minicms
 Same page in different languages accessed via the same URL. If page doesn't
 exist in requested locale default language is used.
 
-**Minicms** uses 'minicms/default.html' template, passing current page in ``page``
-context variable.
+**Minicms** uses 'minicms/default.html' template, passing current page in
+``page`` context variable.
 
 Page attributes you can use in template:
 
-- ``lang`` - page language. Usually same as LANGUAGE_CODE context variable (see above)
+- ``lang`` - page language. Usually same as LANGUAGE_CODE context variable (see
+  above)
 
-- ``slug`` - page slug. All translations of the same page should have the same slug.
-  You can organize pages into some kind of hierarchy with slashes, eg:
+- ``slug`` - page slug. All translations of the same page should have the same
+  slug.  You can organize pages into some kind of hierarchy with slashes, eg: ::
+
     installation
         installation/requirements
         installation/steps
@@ -54,10 +57,10 @@ Page attributes you can use in template:
     pricing
         pricing/free-plan
 
-- ``name`` - localized page name. It will appear as a text under link in menu and
-  breadcrumbs
+- ``name`` - localized page name. It will appear as a text under link in menu
+  and breadcrumbs
 
-- ``title`` - title of a Page, intended for use in HTML title
+- ``title`` - title of a page, intended for use in HTML title
 
 - ``keywords`` - page keywords intended for use in HTML meta keywords (for SEO)
 
@@ -65,10 +68,10 @@ Page attributes you can use in template:
 
 - ``content`` - HTML content of the page
 
-There are also ``minicms_breadcrumbs`` and ``minicms_menu`` template tags available
-in ``minicms_tags`` tag library. You can override their appearance in templates
-``minicms/tags/menu`` and  ``minicms/tags/breadcrumbs``. See example templates_ for
-details.
+There are also ``minicms_breadcrumbs`` and ``minicms_menu`` template tags
+available in ``minicms_tags`` tag library. You can override their appearance in
+templates ``minicms/tags/menu`` and  ``minicms/tags/breadcrumbs``. See example
+templates_ for details.
 
 License
 =======
