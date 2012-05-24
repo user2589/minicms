@@ -25,7 +25,11 @@ setup(
         "Topic :: Internet :: WWW/HTTP :: Site Management",
     ),
 
-    install_requires=(
+    dependency_links = (
+        'https://github.com/user2589/django-sortable/tarball/master#egg=sortable-0.2.0',
+    ),
+    install_requires = (
+        'sortable >= 0.2.0',
         'markdown >= 2.1',
     ),
 )

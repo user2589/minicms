@@ -4,6 +4,8 @@ from django import http
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from django.conf import settings
+
 from minicms import utils
 
 
