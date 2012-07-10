@@ -1,19 +1,20 @@
 # encoding: utf-8
 from setuptools import setup, find_packages
 
-from minicms import __version__ as version
+from minicms import VERSION, LICENSE, PROJECT
 
 setup(
-    name='minicms',
-    version=version,
+    name=PROJECT,
+    version=VERSION,
+    description='Simple CMS app for Django which supports i18n',
+    long_description=open('README.rst').read(),
+    license=LICENSE,
+
     author='Pavel Puchkin',
     author_email='neoascetic@gmail.com',
     url='https://github.com/neoascetic/minicms',
 
-    description='Simple CMS app for Django which supports i18n',
-    long_description=open('README.rst').read(),
-    packages=find_packages(),
-    include_package_data=True,
+    keywords='django cms',
     classifiers=(
         "Programming Language :: Python",
         "License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)",
@@ -25,6 +26,8 @@ setup(
         "Topic :: Internet :: WWW/HTTP :: Site Management",
     ),
 
+    packages=find_packages(),
+    include_package_data=True,
     dependency_links = (
         'https://github.com/user2589/django-sortable/tarball/master#egg=sortable-0.2.0',
     ),
