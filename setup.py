@@ -32,6 +32,7 @@ setup(
         'https://github.com/user2589/django-sortable/tarball/master#egg=sortable-0.2.0',
     ),
     install_requires = (
+        'django >= 1.3',
         'sortable >= 0.2.0',
         'markdown >= 2.1',
     ),
