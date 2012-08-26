@@ -1,1 +1,1 @@
-recursive-include minicms *
+recursive-include minicms/templates *
