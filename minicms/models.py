@@ -67,4 +67,3 @@ class Page(Sortable):
 
     class Meta(Sortable.Meta):
         unique_together = ('slug', 'lang'),
-

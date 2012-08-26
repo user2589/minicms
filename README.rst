@@ -8,8 +8,9 @@ Requirements
 ============
 
 - django >= 1.3
+- sortable >= 0.2.0
+- django-pagedown >= 0.0.2
 - markdown
-- sortable
 
 Installation
 ============
@@ -21,13 +22,9 @@ Installation
 Setup
 =====
 
-- 'minicms' and 'sortable' should be in your INSTALLED_APPS ::
+- 'minicms', 'sortable' and 'pagedown' should be in your INSTALLED_APPS ::
 
-    INSTALLED_APPS += ('minicms', 'sortable',)
-
-- Add 'minicms' urlpattern to base urls and specify view function ::
-
-    ('^cms/', include('minicms.urls'))
+    INSTALLED_APPS += ('minicms', 'sortable', 'pagedown',)
 
 - Sync DB ``manage.py syncdb``
 
@@ -83,10 +80,6 @@ Copyright
 
 Copyright (c) 2012 Pavel Puchkin (neoascetic@gmail.com)
 
-Markitup_: (c) 2008 Jay Salvat (http://markitup.jaysalvat.com/)
-
-.. _Markitup:     http://markitup.jaysalvat.com/
 .. _GNU lesser general public license: http://www.gnu.org/copyleft/lesser.html
 .. _templates: https://github.com/neoascetic/minicms/tree/master/minicms/templates
 .. _neoascetic: https://github.com/neoascetic
-.. _user2589: https://github.com/user2589
