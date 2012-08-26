@@ -8,7 +8,7 @@ Requirements
 ============
 
 - django >= 1.3
-- sortable >= 0.2.0
+- django-sortable >= 0.2.0
 - django-pagedown >= 0.0.2
 - markdown
 
