@@ -22,9 +22,13 @@ Installation
 Setup
 =====
 
-- 'minicms', 'sortable' and 'pagedown' should be in your INSTALLED_APPS ::
+- 'minicms', 'sortable' and 'pagedown' should be in your INSTALLED_APPS: ::
 
     INSTALLED_APPS += ('minicms', 'sortable', 'pagedown',)
+
+- Add minicms' url patters to your ``urls.py``: ::
+
+    url(r'', include('minicms.urls')),
 
 - Sync DB ``manage.py syncdb``
 
