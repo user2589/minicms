@@ -9,10 +9,10 @@ from sortable.admin import SortableAdmin
 
 
 class PageAdmin(SortableAdmin):
-    list_display = ('lang', 'slug', 'name', 'title')
-    list_display_links = ('slug',)
+    list_display = ('lang', 'slug', 'name', 'title',)
+    list_display_links = ('slug', 'name', 'title',)
     list_filter = ('lang',)
-    search_fields = ('slug', 'name')
+    search_fields = ('slug', 'name',)
 
     formfield_overrides = {models.TextField: {'widget': AdminPagedownWidget}}
 

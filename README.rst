@@ -8,7 +8,7 @@ Requirements
 ============
 
 - django >= 1.3
-- sortable >= 0.2.0
+- django-sortable >= 0.2.0
 - django-pagedown >= 0.0.2
 - markdown
 
@@ -22,9 +22,13 @@ Installation
 Setup
 =====
 
-- 'minicms', 'sortable' and 'pagedown' should be in your INSTALLED_APPS ::
+- 'minicms', 'sortable' and 'pagedown' should be in your INSTALLED_APPS: ::
 
     INSTALLED_APPS += ('minicms', 'sortable', 'pagedown',)
+
+- Add minicms' url patters to your ``urls.py``: ::
+
+    url(r'', include('minicms.urls')),
 
 - Sync DB ``manage.py syncdb``
 

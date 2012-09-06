@@ -29,13 +29,13 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     dependency_links = (
-        'https://github.com/user2589/django-sortable/tarball/master#egg=django-sortable-0.2.0',
-        'https://github.com/neoascetic/django-pagedown/tarball/master#egg=django-pagedown-0.0.2',
+        'https://github.com/user2589/django-sortable/tarball/master#egg=sortable-0.2.0',
+        'https://github.com/neoascetic/django-pagedown/tarball/master#egg=pagedown-0.0.2',
     ),
     install_requires = (
         'django >= 1.3',
-        'django-sortable >= 0.2.0',
-        'django-pagedown >= 0.0.2',
+        'sortable >= 0.2.0',
+        'pagedown >= 0.0.2',
 
         'markdown >= 2.1',
     ),
