@@ -77,7 +77,7 @@ templates ``minicms/tags/menu`` and  ``minicms/tags/breadcrumbs``. See example
 templates_ for details.
 
 By default, all unallowed symbols (HTML tags) will be stripped. To avoid this,
-set ``PAGEDOWN_SANITIZE`` setting to ``False``.
+set ``MINICMS_SANITIZE`` setting to ``False``.
 
 License
 =======
