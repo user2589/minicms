@@ -8,8 +8,8 @@ Requirements
 ============
 
 - django >= 1.3
-- django-sortable >= 0.2.0
-- django-pagedown >= 0.0.2
+- `django-sortable`_
+- `django-pagedown`_
 - markdown
 
 Installation
@@ -65,14 +65,19 @@ Page attributes you can use in template:
 
 - ``keywords`` - page keywords intended for use in HTML meta keywords (for SEO)
 
-- ``description`` - same ask keywords but description
+- ``description`` - same as keywords but description
 
-- ``content`` - HTML content of the page
+- ``markdown`` - raw markdown content
+
+- ``markdown.html`` - markdown converted to html
 
 There are also ``minicms_breadcrumbs`` and ``minicms_menu`` template tags
 available in ``minicms_tags`` tag library. You can override their appearance in
 templates ``minicms/tags/menu`` and  ``minicms/tags/breadcrumbs``. See example
 templates_ for details.
+
+By default, all unallowed symbols (HTML tags) will be stripped. To avoid this,
+set ``PAGEDOWN_SANITIZE`` setting to ``False``.
 
 License
 =======
@@ -84,6 +89,11 @@ Copyright
 
 Copyright (c) 2012 Pavel Puchkin (neoascetic@gmail.com)
 
+
+
 .. _GNU lesser general public license: http://www.gnu.org/copyleft/lesser.html
 .. _templates: https://github.com/neoascetic/minicms/tree/master/minicms/templates
 .. _neoascetic: https://github.com/neoascetic
+
+.. _django-sortable: https://github.com/user2589/django-sortable
+.. _django-pagedown: https://github.com/neoascetic/django-pagedown

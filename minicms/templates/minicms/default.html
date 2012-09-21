@@ -18,7 +18,8 @@
         <p>{% minicms_menu %}</p>
 
         <h1>Content</h1>
-        {{ page.content }}
+        <div>{{ page.markdown }}</div>
+        {{ page.markdown.html }}
 
     </body>
 </html>

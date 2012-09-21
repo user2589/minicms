@@ -14,6 +14,4 @@ class PageAdmin(SortableAdmin):
     list_filter = ('lang',)
     search_fields = ('slug', 'name',)
 
-    formfield_overrides = {models.TextField: {'widget': AdminPagedownWidget}}
-
 admin.site.register(Page, PageAdmin)
