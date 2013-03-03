@@ -2,10 +2,11 @@
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.utils import safestring
 
 from sortable.models import Sortable
-import markdown
+from pagedown.fields import PagedownField
+
+MINICMS_SANITIZE = getattr(settings, 'MINICMS_SANITIZE', True)
 
 
 class Page(Sortable):
@@ -33,7 +34,7 @@ class Page(Sortable):
         _('description'), max_length=255, blank=True, default="",
         help_text=_('For using in `meta` tag'))
 
-    markdown = models.TextField(_('markdown content'))
+    markdown = PagedownField(_('markdown content'), sanitize=MINICMS_SANITIZE)
 
     def __unicode__(self):
         return u'%s (%s) at %s' % (self.name, self.lang, self.slug)
@@ -45,10 +46,6 @@ class Page(Sortable):
     @models.permalink
     def get_absolute_url(self):
         return ('minicms', [self.name])
-
-    @property
-    def content(self):
-        return safestring.mark_safe(markdown.markdown(self.markdown))
 
     _parent_slug = None
 
@@ -67,3 +64,4 @@ class Page(Sortable):
 
     class Meta(Sortable.Meta):
         unique_together = ('slug', 'lang'),
+        ordering = Sortable.Meta.ordering + ('slug',)
