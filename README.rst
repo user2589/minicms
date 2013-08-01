@@ -79,21 +79,9 @@ templates_ for details.
 By default, all unallowed symbols (HTML tags) will be stripped. To avoid this,
 set ``MINICMS_SANITIZE`` setting to ``False``.
 
-License
-=======
-
-Distrubuted under `GNU lesser general public license`_.
-
-Copyright
-=========
-
-Copyright (c) 2012 Pavel Puchkin (neoascetic@gmail.com)
 
 
-
-.. _GNU lesser general public license: http://www.gnu.org/copyleft/lesser.html
-.. _templates: https://github.com/neoascetic/minicms/tree/master/minicms/templates
-.. _neoascetic: https://github.com/neoascetic
+.. _templates: minicms/templates
 
 .. _django-sortable: https://github.com/user2589/django-sortable
 .. _django-pagedown: https://github.com/neoascetic/django-pagedown
